@@ -4,18 +4,22 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
+import { TacheModule } from './taches/tache.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'locahost',
+      host: 'localhost',
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'todoDb'
+      database: 'todoDb',
+      autoLoadEntities: true,
+      synchronize: true
     }),
-    UserModule
+    UserModule,
+    TacheModule
   ],
   controllers: [AppController],
   providers: [AppService],
