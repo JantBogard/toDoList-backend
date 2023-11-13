@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Favoris } from "src/favoris/favoris.entity";
+import { User } from "src/users/user.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Tache {
@@ -20,4 +22,10 @@ export class Tache {
 
     @Column()
     dateFin: Date;
+
+    @ManyToOne(() => User, (user) => user.taches)
+    user: User;
+
+    @ManyToOne(() => Favoris, (favoris) => favoris.taches)
+    favoris: Favoris;
 }

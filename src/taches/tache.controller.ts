@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
 import { TacheService } from "./tache.service";
 import { TacheDto } from "./tache.dto";
 
@@ -20,5 +20,10 @@ export class TacheController {
     @Post()
     add(@Body() tache: TacheDto): Promise<TacheDto> {
         return this.tacheService.add(tache);
+    }
+
+    @Put(':id')
+    updateTache(@Param('id') id: number, @Body() tache: TacheDto): Promise<TacheDto> {
+        return this.tacheService.update(id, tache);
     }
 }

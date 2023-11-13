@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Get, Post, Body, Param } from '@nestjs/common';
+import { Get, Post, Put, Body, Param } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -22,7 +22,11 @@ export class UserController {
 
     @Post()
     addUser(@Body() user: UserDto): Promise<User> {
-        console.log(user);
         return this.userService.add(user);
+    }
+
+    @Put(':id')
+    updateUser(@Param('id') id: number, @Body() user: UserDto): Promise<User> {
+        return this.userService.update(user, id);
     }
 }

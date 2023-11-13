@@ -15,9 +15,12 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
-    // update(user: User, id: number): Promise<User> {
-    //     return this.userRepository.update()
-    // }
+    async update(user: User, id: number): Promise<User> {
+
+        await this.userRepository.update(id, user);
+
+        return this.findOneById(id);
+    }
 
     findAll(): Promise<User[]> {
         return this.userRepository.find();

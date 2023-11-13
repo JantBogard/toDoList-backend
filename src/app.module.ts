@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
 import { TacheModule } from './taches/tache.module';
+import { FavorisModule } from './favoris/favoris.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TacheModule } from './taches/tache.module';
       synchronize: true
     }),
     UserModule,
-    TacheModule
+    TacheModule,
+    FavorisModule
   ],
   controllers: [AppController],
   providers: [AppService],

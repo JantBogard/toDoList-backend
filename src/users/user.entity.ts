@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Favoris } from 'src/favoris/favoris.entity';
+import { Tache } from 'src/taches/tache.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -17,4 +19,12 @@ export class User {
 
     @Column({ default: true })
     isActive: boolean;
+
+    @OneToOne(() => Favoris)
+    @JoinColumn()
+    favoris: Favoris;
+
+    @OneToMany(() => Tache, (tache) => tache.user)
+    taches: Tache[];
+
 }

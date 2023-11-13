@@ -15,6 +15,11 @@ export class TacheService {
         return this.tacheRepository.save(tache);
     }
 
+    async update(id: number, tache: Tache): Promise<Tache> {
+        await this.tacheRepository.update(id, tache);
+        return this.findOneById(id);
+    }
+
     findAll(): Promise<Tache[]> {
         return this.tacheRepository.find();
     }
